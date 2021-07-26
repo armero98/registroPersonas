@@ -1,0 +1,26 @@
+<h1>{{title}}</h1>
+
+<p *ngIf="siHay" > no hay registros</p>
+
+<button (click)="guardarEquipo()">  guardar registro </button>
+
+<div>
+    <div *ngFor="let persona of personas; let i = index">
+        <p>id registro numero:{{persona.id}}......
+            fecha y hora {{persona.fecha | date:"short"}} </p>
+            <p>id registro <input type="text" [(ngModel)]="borrar" >         </p>
+            <button (click)="borrarRegistro()"> eliminar registro</button>
+        <br>
+        <p>nombre  <input type="text" [(ngModel)]="nombre">   </p>
+        <p>caracteristicas  <input type="text" [(ngModel)]="caracteristicas"> </p>
+        <button (click)="agregarRegistro(i)" >  agregar persona </button>
+        <p *ngIf="persona.registros.length<= 0"> no hay registros agregados</p>
+        <br>
+        <div *ngIf="persona.registros.length > 0">
+            <ul *ngFor="let registro of persona.registros" >
+                <li>{{registro.nombre}}  :  {{registro.caracteristicas}}</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
