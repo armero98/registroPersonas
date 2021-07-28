@@ -1,24 +1,27 @@
 <h1>{{title}}</h1>
 
-<p *ngIf="siHay" > no hay registros</p>
+<p *ngIf="siHay" > No hay competencias</p>
 
-<button (click)="guardarEquipo()">  guardar registro </button>
+<button (click)="guardarEquipo()"> Agregar competencia </button>
 
 <div>
     <div *ngFor="let persona of personas; let i = index">
-        <p>id registro numero:{{persona.id}}......
-            fecha y hora {{persona.fecha | date:"short"}} </p>
+        <p>Id registro numero:{{persona.id}}......
+            Fecha y hora {{persona.fecha | date:"short"}} </p>
             <p>id registro <input type="text" [(ngModel)]="borrar" >         </p>
-            <button (click)="borrarRegistro()"> eliminar registro</button>
+            <button (click)="borrarRegistro()"> Eliminar competencia</button>
         <br>
-        <p>nombre  <input type="text" [(ngModel)]="nombre">   </p>
-        <p>caracteristicas  <input type="text" [(ngModel)]="caracteristicas"> </p>
-        <button (click)="agregarRegistro(i)" >  agregar persona </button>
-        <p *ngIf="persona.registros.length<= 0"> no hay registros agregados</p>
+        <p>Nombre<input type="text" [(ngModel)]="nombre">   </p>
+        <p>Descripcion<input type="text" [(ngModel)]="caracteristicas"> </p>
+        <p>Descripcion Comportamiento<input type="text" [(ngModel)]="descripcion_com">   </p>
+        <p>Porcentaje<input type="text" [(ngModel)]="porcentaje"> </p>
+        <button (click)="agregarRegistro(i)" > Guardar </button>
+        <p *ngIf="persona.registros.length<= 0"> No hay registros agregados</p>
         <br>
         <div *ngIf="persona.registros.length > 0">
             <ul *ngFor="let registro of persona.registros" >
-                <li>{{registro.nombre}}  :  {{registro.caracteristicas}}</li>
+                <p>Nombre: {{registro.nombre}}  :  Descripcion: {{registro.caracteristicas}} : 
+                Descripcion Comportamiento: {{registro.descripcion_com}} : Porcentaje: {{registro.porcentaje}}</p>
             </ul>
         </div>
 

@@ -14,11 +14,13 @@ export class PersonaComponent implements OnInit {
 
   personas : Persona [] = []
 
-  title = 'Sistema de Registro'
+  title = 'Sistema de Competencias'
   saveFactura = true
   siHay = true
   nombre = ""
   caracteristicas = ""
+  descripcion_com = ""
+  porcentaje = ""
   borrar = 0
   
 
@@ -26,10 +28,13 @@ export class PersonaComponent implements OnInit {
     agregarRegistro(id:number){ 
       try {
         if(this.nombre != "" && this.caracteristicas != ""){
-          let registro = new Registro (this.nombre, this.caracteristicas, id)
+          let registro = new Registro (this.nombre, this.caracteristicas,this.descripcion_com, this.porcentaje, id)
           this.personas[id].registros.push(registro) 
           this.nombre = ""
           this.caracteristicas = ""
+          this.descripcion_com = ""
+          this.porcentaje = ""
+          this.siHay = false
         }
         return
       }catch (e) {
@@ -39,7 +44,7 @@ export class PersonaComponent implements OnInit {
 
     guardarEquipo(){ 
       try {
-          let persona = new Persona (this.personas.length + 1, new Date(), [])
+          let persona = new Persona (this.personas.length , new Date(), [])
           this.personas.push(persona)
           return
       }catch (e) {
@@ -50,10 +55,10 @@ export class PersonaComponent implements OnInit {
     borrarRegistro(){
       try{
         if(this.borrar >= 0){
-          this.personas.pop()
+          this.personas.splice(this.borrar, 1)
         }
       } catch (e) {
-        alert('el registro seleccionado no existe')
+        alert('El registro seleccionado no existe')
       }
     }
 
